@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Engine</title>
+    <link rel="stylesheet" href="/static/styles.css"></head>
+<body>
+    <h2>Search Engine</h2><br>
+    <div class="engine">
+    <form id="engine" method="post" action = "/search">
+        <label><b>Input Text</b>
+        </label>
+        <input type="text" name="input_text" id="input_text" value="{{query}}">
+        <input type="submit" name="search" id="search" value="Search">
+        <br><br>
+    </form>
+    {% if results %}
+        
+        {% for dictionary in results["metadatas"][0]%} 
+            {% for key, value in dictionary.items() %} 
+                <p id="name_label">{{key}}</p>
+                <p id="subtitle_label">{{' '.join(value.split()[:50])}}  .....</p><br>
+            {% endfor %}  
+        {% endfor %}
+    {% endif %}
+</div>
+</body>
+</html>
